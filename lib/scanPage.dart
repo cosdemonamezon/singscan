@@ -41,13 +41,14 @@ class _ScanPageState extends State<ScanPage> {
             print('200');
           } else if (scan['statusCode'] == 400) {
             setState(() {
-              data = {};
+              data.clear();
               showText = scan['message'];
             });
             LoadingDialog.close(context);
           } else {
             print('format barcode not true');
             setState(() {
+              data.clear();
               showText = 'ไม่พบตั๋วคอนเสิร์ต';
             });
             LoadingDialog.close(context);
