@@ -36,6 +36,7 @@ class _ScanPageState extends State<ScanPage> {
           if (scan['statusCode'] == 200) {
             setState(() {
               data = scan;
+              showText = '';
             });
             LoadingDialog.close(context);
             print('200');
