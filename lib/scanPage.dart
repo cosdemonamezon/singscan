@@ -9,7 +9,9 @@ import 'package:singscan/scanApi.dart';
 import 'package:singscan/widgets/LoadingDialog.dart';
 
 class ScanPage extends StatefulWidget {
-  ScanPage({Key? key}) : super(key: key);
+  ScanPage({Key? key, required this.concertId, required this.concertShowId}) : super(key: key);
+  String concertId;
+  String concertShowId;
 
   @override
   State<ScanPage> createState() => _ScanPageState();
@@ -30,8 +32,9 @@ class _ScanPageState extends State<ScanPage> {
         barcode = _barcode.rawContent;
       });
       if (barcode != '') {
+        //barcode = id ticket
         LoadingDialog.open(context);
-        final scan = await ScanApi.getScanTicket(barcode);
+        final scan = await ScanApi.getScanTicket(barcode, widget.concertId, widget.concertShowId);
         if (scan != null) {
           if (scan['statusCode'] == 200) {
             setState(() {
@@ -54,11 +57,16 @@ class _ScanPageState extends State<ScanPage> {
             });
             LoadingDialog.close(context);
           }
-        } else {}
-      } else {}
+        } else {
+          LoadingDialog.close(context);
+        }
+      } else {
+        LoadingDialog.close(context);
+      }
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.cameraAccessDenied) {
         // The user did not grant the camera permission.
+        LoadingDialog.close(context);
       } else {
         // Unknown error.
       }
