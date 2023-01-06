@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 import 'package:singscan/models/concert.dart';
+import 'package:singscan/models/user.dart';
 
 class AppService {
   const AppService();
@@ -25,6 +26,26 @@ class AppService {
     return null;
 
     //return null;
+  }
+
+  Future<User> getProfile() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    final token = prefs.getString('token');
+
+    final url = Uri.https(publicUrl, '/api/users/me');
+
+    final headers = {'Authorization': 'Bearer $token'};
+
+    final response = await http.get(url, headers: headers);
+
+    if (response.statusCode == 200) {
+      final data = convert.jsonDecode(response.body);
+      return User.fromJson(data['data']);
+    } else {
+      final data = convert.jsonDecode(response.body);
+      throw Exception(data['message']);
+    }
   }
 
   Future setToken(String webToken) async {

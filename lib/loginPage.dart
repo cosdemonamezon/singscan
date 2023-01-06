@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Consumer<AppController>(builder: (context, controller, child){
+    return Consumer<AppController>(builder: (context, controller, child) {
       return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -113,30 +113,33 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                   child: GestureDetector(
-                    onTap: () async{
+                    onTap: () async {
                       if (_loginFormKey.currentState!.validate()) {
                         try {
                           LoadingDialog.open(context);
-                          final userdata = await controller.signIn(tel: username.text, password: password.text);
+                          final userdata = await controller.signIn(
+                              tel: username.text, password: password.text);
                           //await controller.setToken();
                           if (!mounted) return;
                           LoadingDialog.close(context);
                           if (userdata == true) {
-                            Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => HomePage()));
-                          }else {
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) {
+                              return HomePage();
+                            }));
+                          } else {
                             LoadingDialog.close(context);
                             showCupertinoDialog(
-                              context: context,
-                              builder: (context) => CupertinoQuestion(
-                                    title: 'เกิดข้อผิดพลาด',
-                                    content: 'หมายเลขโทรศัพท์หรือรหัสผ่านไม่ถูกต้อง',
-                                    press: () {
-                                      Navigator.pop(context, true);
-                                    },
-                                  ));
+                                context: context,
+                                builder: (context) => CupertinoQuestion(
+                                      title: 'เกิดข้อผิดพลาด',
+                                      content:
+                                          'หมายเลขโทรศัพท์หรือรหัสผ่านไม่ถูกต้อง',
+                                      press: () {
+                                        Navigator.pop(context, true);
+                                      },
+                                    ));
                           }
-                          
                         } catch (e) {
                           LoadingDialog.close(context);
                           showCupertinoDialog(
@@ -149,9 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                                     },
                                   ));
                         }
-                      } else {
-                        
-                      }
+                      } else {}
                       // Navigator.push(context,
                       //     MaterialPageRoute(builder: (context) => HomePage()));
                     },
@@ -178,5 +179,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       );
-  });}
+    });
+  }
 }

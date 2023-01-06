@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:singscan/appService.dart';
@@ -8,12 +9,28 @@ class AppController extends ChangeNotifier {
   late SharedPreferences prefs;
 
   final AppService appService;
+  FirebaseMessaging? messaging;
 
   String? token;
   User? user;
-  AppController({this.appService = const AppService()});
+  AppController({this.appService = const AppService()}){
+    //messaging = FirebaseMessaging.instance;
+  }
   List<Concert> concerts = [];
   Concert? concert;
+
+  Future<void> initialize() async {
+    prefs = await SharedPreferences.getInstance();
+    token = prefs.getString('token');
+    try {
+      user = token != null ? await appService.getProfile() : null;
+    } catch (e) {
+      await prefs.clear();
+      initialize();
+    }
+
+    notifyListeners();
+  }
 
   Future<void> clearToken() async {
     prefs = await SharedPreferences.getInstance();
@@ -53,9 +70,9 @@ class AppController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Future<void> setToken() async {
-  //   final String? webToken = await messaging?.getToken();
-  //   print(webToken);
-  //   await appService.setToken(webToken!);
-  // }
+  Future<void> setToken() async {
+    final String? webToken = await messaging?.getToken();
+    print(webToken);
+    await appService.setToken(webToken!);
+  }
 }
