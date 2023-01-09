@@ -53,10 +53,10 @@ class _HomePageState extends State<HomePage> {
                                   child: Container(
                                     child: ClipRRect(
                                         borderRadius:
-                                            BorderRadius.circular(15.0),
+                                            BorderRadius.circular(8.0),
                                         child: Image.network(controller
                                             .concerts[index].cover
-                                            .toString())),
+                                            .toString(),height: size.height*0.32, width: double.infinity,fit: BoxFit.fill,)),
                                   ),
                                 ),
                               ],
