@@ -36,10 +36,18 @@ class _DetailPageState extends State<DetailPage> {
       return Scaffold(
         backgroundColor: Color.fromARGB(221, 12, 12, 12),
         appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              )),
           title: Row(
             children: [
               SizedBox(
-                width: 80,
+                width: 60,
               ),
               SizedBox(
                 height: 100,
@@ -47,7 +55,7 @@ class _DetailPageState extends State<DetailPage> {
                   'assets/icons/aaaa.jpg',
                   fit: BoxFit.fitHeight,
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -144,7 +152,7 @@ class _DetailPageState extends State<DetailPage> {
                             (index) => Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: size.height * 0.08,
+                                    height: size.height * 0.10,
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                         border: Border.all(
@@ -153,11 +161,14 @@ class _DetailPageState extends State<DetailPage> {
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                     child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.fromLTRB(4, 0, 4, 4),
+                                          padding:
+                                              EdgeInsets.fromLTRB(4, 0, 4, 4),
                                           child: Icon(
                                             Icons.event_note_outlined,
                                             color: Colors.white,
@@ -174,34 +185,56 @@ class _DetailPageState extends State<DetailPage> {
                                           flex: 4,
                                           child: Padding(
                                             padding: EdgeInsets.only(left: 10),
-                                            child: Text('เวลา ${controller.concert!.concertShows![index].showDateTime.formatTo('HH:mm')}', style: style),
+                                            child: Text(
+                                                'เวลา ${controller.concert!.concertShows![index].showDateTime.formatTo('HH:mm')}',
+                                                style: style),
                                           ),
                                         ),
-                                        DateTime.now().difference(controller.concert!.publicSale!).inMinutes > 0 &&
-                                        DateTime.now().difference(controller.concert!.closeSale!).inMinutes < 0
-                                        ? Expanded(
-                                            flex: 2,
-                                            child: InkWell(
-                                              onTap: () async {
-                                                Navigator.push(context, MaterialPageRoute(builder: (context)=>ScanPage(concertId: controller.concert!.id, concertShowId: controller.concert!.concertShows![index].id)));                                                
-                                              },
-                                              child: Container(
-                                                height: size.height * 0.08,
-                                                width: size.width * 0.30,
-                                                decoration: BoxDecoration(
-                                                  color: (kPrimaryColor),
-                                                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                                                ),
-                                                child: Center(
-                                                    child: Text(
-                                                  'เลือกรอบ',
-                                                  style: TextStyle(
-                                                      color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
-                                                )),
+                                        // DateTime.now().difference(controller.concert!.publicSale!).inMinutes > 0 &&
+                                        // DateTime.now().difference(controller.concert!.closeSale!).inMinutes < 0
+                                        Expanded(
+                                          flex: 3,
+                                          child: InkWell(
+                                            onTap: () async {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ScanPage(
+                                                            concertId:
+                                                                controller
+                                                                    .concert!
+                                                                    .id,
+                                                            concertShowId:
+                                                                controller
+                                                                    .concert!
+                                                                    .concertShows![
+                                                                        index]
+                                                                    .id,
+                                                            concert: controller
+                                                                .concert,
+                                                          )));
+                                            },
+                                            child: Container(
+                                              height: size.height * 0.10,
+                                              width: size.width * 0.32,
+                                              decoration: BoxDecoration(
+                                                color: (kPrimaryColor),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
                                               ),
+                                              child: Center(
+                                                  child: Text(
+                                                'แสกนบัตร',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              )),
                                             ),
-                                          )
-                                        : SizedBox(),
+                                          ),
+                                        )
                                       ],
                                     ),
                                   ),
@@ -239,10 +272,11 @@ class _DetailPageState extends State<DetailPage> {
                       //     ),
                       //   ),
                       // ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(controller.concert!.description ?? '', style: style),
-                      ),
+                      // Padding(
+                      //   padding: EdgeInsets.all(8.0),
+                      //   child: Text(controller.concert!.description ?? '',
+                      //       style: style),
+                      // ),
                     ],
                   )
                 : SizedBox(),
