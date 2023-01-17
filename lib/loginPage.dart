@@ -35,15 +35,18 @@ class _LoginPageState extends State<LoginPage> {
     final size = MediaQuery.of(context).size;
     return Consumer<AppController>(builder: (context, controller, child) {
       return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text(""),
-        ),
+        // appBar: AppBar(
+        //   automaticallyImplyLeading: false,
+        //   title: Text(""),
+        // ),
         body: Padding(
           padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(
+                  height: size.height * 0.12,
+                ),
                 Center(
                   child: Container(
                       width: 300,
@@ -68,12 +71,12 @@ class _LoginPageState extends State<LoginPage> {
                             'ชื่อผู้ใช้',
                           ),
                         ),
-                        AppTextFormNumber(
+                        AppTextForm(
                           controller: username,
                           hintText: 'ชื่อผู้ใช้',
                           validator: (val) {
                             if (val == null || val.isEmpty) {
-                              return 'กรุณากรอกหมายเลขโทรศัพท์';
+                              return 'กรุณากรอกชื่อ';
                             } else if (RegExp(r'\s').hasMatch(val)) {
                               return 'รูปแบบไม่ถูกต้อง';
                             }
