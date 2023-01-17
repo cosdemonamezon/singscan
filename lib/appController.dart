@@ -1,4 +1,3 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:singscan/appService.dart';
@@ -9,11 +8,11 @@ class AppController extends ChangeNotifier {
   late SharedPreferences prefs;
 
   final AppService appService;
-  FirebaseMessaging? messaging;
+  // FirebaseMessaging? messaging;
 
   String? token;
   User? user;
-  AppController({this.appService = const AppService()}){
+  AppController({this.appService = const AppService()}) {
     //messaging = FirebaseMessaging.instance;
   }
   List<Concert> concerts = [];
@@ -40,6 +39,7 @@ class AppController extends ChangeNotifier {
 
     notifyListeners();
   }
+
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   Future<bool> signIn({
@@ -70,9 +70,9 @@ class AppController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> setToken() async {
-    final String? webToken = await messaging?.getToken();
-    print(webToken);
-    await appService.setToken(webToken!);
-  }
+  // Future<void> setToken() async {
+  //   final String? webToken = await messaging?.getToken();
+  //   print(webToken);
+  //   await appService.setToken(webToken!);
+  // }
 }
