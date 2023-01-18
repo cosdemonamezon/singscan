@@ -148,8 +148,8 @@ class _LoginPageState extends State<LoginPage> {
                           showCupertinoDialog(
                               context: context,
                               builder: (context) => CupertinoQuestion(
-                                    title: 'เกิดข้อผิดพลาดทีไม่รู้จัก',
-                                    content: 'โปรดติดต่อแอดมินเพื่อแก้ใข',
+                                    title: 'เกิดข้อผิดพลาด',
+                                    content: '$e',
                                     press: () {
                                       Navigator.pop(context, true);
                                     },

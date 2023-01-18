@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:singscan/appService.dart';
 import 'package:singscan/models/concert.dart';
+import 'package:singscan/models/login.dart';
 import 'package:singscan/models/user.dart';
 
 class AppController extends ChangeNotifier {
@@ -50,9 +51,9 @@ class AppController extends ChangeNotifier {
     final SharedPreferences prefs = await _prefs;
 
     if (data != null) {
-      final user = User.fromJson(data['user']);
-      await prefs.setString('token', data['access_token']);
-      await prefs.setString('uid', data['user']['id']);
+      final _user = Login.fromJson(data['data']);
+      await prefs.setString('token', data['data']['access_token']);
+      await prefs.setString('uid', data['data']['user']['id']);
       return true;
     }
     return false;

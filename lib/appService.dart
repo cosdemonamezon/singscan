@@ -11,7 +11,7 @@ class AppService {
   const AppService();
 
   static Login(String phoneNumber, String password) async {
-    final url = Uri.https(publicUrl, 'api/auth/sign-in');
+    final url = Uri.https(publicUrl, 'api/auth/login');
     final response = await http.post(url, body: {
       'phoneNumber': phoneNumber,
       'password': password,
