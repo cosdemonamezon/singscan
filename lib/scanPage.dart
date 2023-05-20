@@ -129,13 +129,13 @@ class _ScanPageState extends State<ScanPage> {
       }
     } on FormatException {
       // User returned using the "back"-button before scanning anything.
-    } catch (e) {
+    } on Exception catch (e) {
       LoadingDialog.close(context);
       showCupertinoDialog(
           context: context,
           builder: (context) => CupertinoQuestion(
                 title: 'แจ้งเตือน',
-                content: 'ไม่พบคอนเสิร์ต',
+                content: '$e',
                 press: () {
                   Navigator.pop(context, true);
                 },

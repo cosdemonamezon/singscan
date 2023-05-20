@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-// const String baseUrl = 'https://ban-sing.dev-asha.com';
-// const String publicUrl = 'ban-sing.dev-asha.com';
+const String baseUrl = 'https://ban-sing.dev-asha.com';
+const String publicUrl = 'ban-sing.dev-asha.com';
 
-const String baseUrl = 'https://app.appbansing.com';
-const String publicUrl = 'app.appbansing.com';
+// const String baseUrl = 'https://app.appbansing.com';
+// const String publicUrl = 'app.appbansing.com';
 
 const kBackgroundColor = Color(0xff1c1c1c);
 const kContainer = Color(0xff1c1c1c);
