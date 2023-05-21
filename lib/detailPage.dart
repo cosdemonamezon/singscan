@@ -190,8 +190,6 @@ class _DetailPageState extends State<DetailPage> {
                                                 style: style),
                                           ),
                                         ),
-                                        // DateTime.now().difference(controller.concert!.publicSale!).inMinutes > 0 &&
-                                        // DateTime.now().difference(controller.concert!.closeSale!).inMinutes < 0
                                         Expanded(
                                           flex: 3,
                                           child: InkWell(
