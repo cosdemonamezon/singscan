@@ -47,13 +47,13 @@ class _DetailPageState extends State<DetailPage> {
           title: Row(
             children: [
               SizedBox(
-                width: 60,
+                width: size.width *0.25,
               ),
               SizedBox(
-                height: 100,
+                height: size.height * 0.07,
                 child: Image.asset(
                   'assets/icons/aaaa.jpg',
-                  fit: BoxFit.fitHeight,
+                  fit: BoxFit.fill,
                 ),
               )
             ],

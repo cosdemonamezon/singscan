@@ -50,10 +50,10 @@ class _LoginPageState extends State<LoginPage> {
                 Center(
                   child: Container(
                       width: 300,
-                      height: 200,
+                      height: 250,
                       child: Image.asset(
                         'assets/icons/aaaa.jpg',
-                        fit: BoxFit.fitWidth,
+                        fit: BoxFit.fill,
                       )),
                 ),
                 SizedBox(
