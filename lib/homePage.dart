@@ -35,10 +35,10 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 100,
+                height: size.height * 0.07,
                 child: Image.asset(
                   'assets/icons/aaaa.jpg',
-                  fit: BoxFit.fitHeight,
+                  fit: BoxFit.fill,
                 ),
               )
             ],
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                             crossAxisCount: 2,
                             mainAxisSpacing: 0.67,
                             crossAxisSpacing: 5,
-                            childAspectRatio: 0.60),
+                            childAspectRatio: 0.75),
                         primary: true,
                         scrollDirection: Axis.vertical,
                         physics: const ClampingScrollPhysics(),
